@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yara - Your Personalized AI Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="Yara Logo" class="logo-img">
+                <span class="logo-text">Yara</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#documents">Documents</a></li>
+                <li><a href="#video">Video Editor</a></li>
+                <li><a href="#chat">AI Chat</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Your Personalized AI</h1>
+                <p class="hero-subtitle">That can help you in any kind of situation</p>
+                <p class="hero-description">
+                    Create documents, edit videos, and get instant AI assistance - all in one powerful platform
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('features')">Get Started</button>
+                    <button class="btn btn-secondary" onclick="openChat()">Try AI Chat</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="ai-animation">
+                    <div class="ai-circle"></div>
+                    <div class="ai-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful AI Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>AI Document Creator</h3>
+                    <p>Generate Word, Excel, PowerPoint documents instantly with AI assistance</p>
+                    <button class="btn btn-outline" onclick="openDocumentCreator()">Create Documents</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>AI Video Editor</h3>
+                    <p>Edit videos with AI-powered tools for professional results</p>
+                    <button class="btn btn-outline" onclick="openVideoEditor()">Edit Videos</button>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>AI Chat Assistant</h3>
+                    <p>Get instant answers and assistance for any question or task</p>
+                    <button class="btn btn-outline" onclick="openChat()">Start Chatting</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Document Creator Section -->
+    <section id="documents" class="document-creator">
+        <div class="container">
+            <h2 class="section-title">AI Document Creator</h2>
+            <div class="document-interface">
+                <div class="document-types">
+                    <button class="doc-type active" data-type="word">
+                        <i class="fas fa-file-word"></i>
+                        Word Document
+                    </button>
+                    <button class="doc-type" data-type="excel">
+                        <i class="fas fa-file-excel"></i>
+                        Excel Spreadsheet
+                    </button>
+                    <button class="doc-type" data-type="powerpoint">
+                        <i class="fas fa-file-powerpoint"></i>
+                        PowerPoint
+                    </button>
+                </div>
+                <div class="document-creator-form">
+                    <textarea id="documentPrompt" placeholder="Describe what document you want to create..."></textarea>
+                    <button class="btn btn-primary" onclick="generateDocument()">
+                        <i class="fas fa-magic"></i>
+                        Generate Document
+                    </button>
+                </div>
+                <div id="documentPreview" class="document-preview"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Editor Section -->
+    <section id="video" class="video-editor">
+        <div class="container">
+            <h2 class="section-title">AI Video Editor</h2>
+            <div class="video-interface">
+                <div class="video-upload">
+                    <div class="upload-area" id="videoUpload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your video or click to upload</p>
+                        <input type="file" id="videoFile" accept="video/*" hidden>
+                    </div>
+                </div>
+                <div class="video-controls">
+                    <button class="btn btn-outline" onclick="trimVideo()">
+                        <i class="fas fa-cut"></i>
+                        Trim
+                    </button>
+                    <button class="btn btn-outline" onclick="addEffects()">
+                        <i class="fas fa-magic"></i>
+                        Effects
+                    </button>
+                    <button class="btn btn-outline" onclick="addText()">
+                        <i class="fas fa-text-height"></i>
+                        Add Text
+                    </button>
+                    <button class="btn btn-outline" onclick="addMusic()">
+                        <i class="fas fa-music"></i>
+                        Add Music
+                    </button>
+                </div>
+                <div id="videoPreview" class="video-preview"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chat Section -->
+    <section id="chat" class="ai-chat">
+        <div class="container">
+            <h2 class="section-title">AI Chat Assistant</h2>
+            <div class="chat-interface">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>Hello! I'm Yara, your personalized AI assistant. How can I help you today?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Ask me anything...">
+                    <button class="btn btn-primary" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Yara Logo" class="logo-img">
+                    <span class="logo-text">Yara</span>
+                </div>
+                <p>&copy; 2025 Yara AI Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeChat()">&times;</span>
+            <div class="modal-chat">
+                <div class="modal-chat-messages" id="modalChatMessages">
+                    <div class="message bot-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>Hi! I'm here to help. What would you like to know?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-chat-input">
+                    <input type="text" id="modalChatInput" placeholder="Type your message...">
+                    <button class="btn btn-primary" onclick="sendModalMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
